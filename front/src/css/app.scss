@@ -1,1 +1,120 @@
 // app global css in SCSS form
+
+.table-tr {
+  display: block;
+  margin-bottom: 50px;
+  border-top: 1px solid gray;
+}
+
+.table-wrapper-td {
+  display: flex;
+  align-items: center;
+
+  span.content {
+    width: 60%;
+  }
+}
+
+.q-table thead tr, .q-table tbody td {
+  white-space: unset;
+  height: unset;
+  padding: 16px;
+}
+
+.table-label-mobile {
+  width: 33%;
+  font-weight: 700;
+  display: inline-block;
+}
+
+#admin-articles {
+  table {
+    thead {
+      display: none;
+    }
+  }
+
+  .q-table {
+    display: block;
+    margin-top: 20px;
+
+    tbody {
+      display: block;
+    }
+  }
+
+  .q-table__control {
+    width: 100%;
+  }
+
+  .scroll {
+    overflow: hidden;
+  }
+
+  #search-export {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    row-gap: 12px;
+    margin-top: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  #admin-articles #search-export {
+    flex-direction: row;
+    column-gap: 12px;
+    row-gap: 0;
+
+    .search-input {
+      width: 50%;
+    }
+
+    .btn-export {
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .table-tr {
+    display: table-row;
+    border-top: 0;
+  }
+
+  .table-label-mobile {
+    display: none;
+  }
+
+  .table-wrapper-td {
+    display: table-cell;
+  }
+
+  #admin-articles {
+
+    table thead {
+      display: table-header-group;
+    }
+
+    .q-table {
+      display: table;
+
+      tbody {
+        display: table-row-group;
+      }
+    }
+
+    #search-export {
+      flex-direction: row;
+
+      .search-input {
+        width: 30%;
+      }
+
+      .btn-export {
+        width: 30%;
+      }
+    }
+  }
+}
