@@ -8,6 +8,6 @@ const articleSchema = new mongoose.Schema({
     createdAt: Date,
 });
 
-const Article = mongoose.model('Article', articleSchema);
+const ArticleModel = mongoose.model('Article', articleSchema);
 
-export default Article;
+export default ArticleModel;
