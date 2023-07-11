@@ -5,6 +5,7 @@ import options from "./config/swagger";
 import db from "./config/db";
 import articleRoutes from "./routes/article";
 import bodyParser from "body-parser";
+import userRoutes from "./routes/user";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ const database = new db(process.env.URI_DB);
 app.use(bodyParser.json());
 
 app.use('/article', articleRoutes);
+app.use('/user', userRoutes);
 
 app.use('/docs', SwaggerUi.serve);
 app.get('/docs', SwaggerUi.setup(options));
