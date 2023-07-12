@@ -1,5 +1,4 @@
 <template>
-<!--  {{ idtest ?? 'no id found'}}-->
   <q-form
     @submit="onSubmit"
     class="q-gutter-md">
