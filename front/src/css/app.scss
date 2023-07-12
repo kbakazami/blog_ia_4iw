@@ -61,6 +61,28 @@
   }
 }
 
+.card-articles {
+  .author {
+    text-decoration: underline;
+  }
+
+  .date {
+    font-style: italic;
+  }
+
+  .date-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 18px;
+  }
+}
+
+
 @media (min-width: 600px) {
   #admin-articles #search-export {
     flex-direction: row;

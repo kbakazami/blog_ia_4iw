@@ -7,6 +7,7 @@
       row-key="name"
       :filter="filter"
       id="admin-articles"
+      :pagination="initialPagination"
     >
       <template v-slot:top-right>
         <div id="search-export">
@@ -18,9 +19,9 @@
           <q-btn
             color="primary"
             icon-right="archive"
-            label="Export to csv"
+            label="Export to JSON"
             no-caps
-            @click="exportTable"
+            @click="exportTableToJson"
             class="btn-export"
           />
         </div>
@@ -68,26 +69,9 @@
 
 <script>
 
-import { useArticlesStore } from "src/router/articles";
+import { useArticlesStore } from "src/stores/articles";
 import { exportFile, useQuasar } from 'quasar'
 import { ref } from 'vue';
-
-function wrapCsvValue (val, formatFn, row) {
-  let formatted = formatFn !== void 0
-    ? formatFn(val, row)
-    : val
-
-  formatted = formatted === void 0 || formatted === null
-    ? ''
-    : String(formatted)
-
-  formatted = formatted.split('"').join('""')
-
-  // .split('\n').join('\\n')
-  // .split('\r').join('\\r')
-
-  return `"${formatted}"`
-}
 
 export default {
   name: "Admin",
@@ -95,6 +79,13 @@ export default {
     const articlesStore = useArticlesStore();
     const articles = articlesStore.articles;
     const $q = useQuasar()
+
+    const initialPagination = {
+      sortBy: 'desc',
+      descending: false,
+      page: 1,
+      rowsPerPage: 50
+    };
 
     const columns = [
       { name: 'id', required: true, label: 'ID', align: 'left', field: articles => articles.id, sortable: true },
@@ -110,6 +101,7 @@ export default {
       articles,
       columns,
       filter: ref(''),
+      initialPagination,
       truncate(value, length) {
         if (value.length > length) {
           return value.substring(0, length) + "...";
@@ -125,23 +117,13 @@ export default {
       {
         articlesStore.deleteArticle(articleId);
       },
-      exportTable () {
-        // naive encoding to csv format
-        const content = [columns.map(col => wrapCsvValue(col.label))].concat(
-          articles.map(row => columns.map(col => wrapCsvValue(
-            typeof col.field === 'function'
-              ? col.field(row)
-              : row[col.field === void 0 ? col.name : col.field],
-            col.format,
-            row
-          )).join(','))
-        ).join('\r\n')
+      exportTableToJson () {
+        const content = JSON.stringify(articles, null, " ");
 
         const status = exportFile(
-          'table-export.csv',
+          'json-content-table.json',
           content,
-          'text/csv'
-        )
+          'text/plain');
 
         if (status !== true) {
           $q.notify({
@@ -150,7 +132,7 @@ export default {
             icon: 'warning'
           })
         }
-      }
+      },
     };
   },
 };

@@ -21,7 +21,7 @@
 
     <div v-if="!article">
       <q-btn label="Generate" color="primary" @click="generateContent()"/>
-      <div>{{ response }}</div>
+      <div class="q-mt-lg">{{ response }}</div>
     </div>
 
     <q-input
@@ -39,6 +39,7 @@
       checked-icon="check"
       color="green"
       unchecked-icon="clear"
+      class="q-ml-none"
       :label="isPublished === false ? 'Don\'t publish' : 'Publish'"
     />
 
@@ -48,7 +49,7 @@
 
 <script>
 import { ref } from "vue";
-import {useArticlesStore} from "src/router/articles";
+import {useArticlesStore} from "src/stores/articles";
 import {useRoute, useRouter} from "vue-router";
 export default {
   setup() {

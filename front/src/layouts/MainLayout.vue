@@ -4,9 +4,11 @@
       view="hhh LpR fFf">
       <q-header elevated class="bg-cyan">
         <q-toolbar>
-          <q-btn flat round dense to="/" icon="home" />
+          <q-btn flat dense to="/" icon="home" label="home" />
+          <q-toolbar-title class="text-center">
+            Homepage - Blog
+          </q-toolbar-title>
           <q-btn flat round dense to="/admin" icon="lock" />
-
         </q-toolbar>
       </q-header>
 

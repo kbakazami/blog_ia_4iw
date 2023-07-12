@@ -49,12 +49,12 @@ export const useArticlesStore = defineStore("articles", {
       this.articles.push(newArticle);
     },
     async getAllArticles() {
-      try {
-        const response = await axios.get(`${API_URL}/articles`);
-        this.articles = response.data;
-      } catch (error) {
-        console.error('Can\'t get the donations :', error);
-      }
+      // try {
+      //   const response = await axios.get(`${API_URL}/articles`);
+      //   this.articles = response.data;
+      // } catch (error) {
+      //   console.error('Can\'t get the donations :', error);
+      // }
     },
     async getAllPublishedArticles()
     {
