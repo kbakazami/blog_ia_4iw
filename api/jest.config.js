@@ -9,6 +9,10 @@ module.exports = {
         'js',
         'ts'
     ],
+    modulePathIgnorePatterns: [
+        "node_modules/",
+        "dist/"
+    ],
     testMatch: [
         '**/test/**/*.test.(ts|js)'
     ],
