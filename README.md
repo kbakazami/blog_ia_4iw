@@ -16,7 +16,7 @@ Actuellement les internaute peuvent consulter les articles postés sur le site m
 
 #### Fonctionnalités
 Les appels à l’API se font en HTTP sur un serveur Node.js (Express).
-La liste des endpoint :
+Quelque exemple des endpoint :
 * http://localhost:8000/api/auth/signin
 * http://localhost:8000/api/auth/signup
 ...
