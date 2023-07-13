@@ -19,7 +19,6 @@ Les appels à l’API se font en HTTP sur un serveur Node.js (Express).
 La liste des endpoint :
 * http://localhost:8000/api/auth/signin
 * http://localhost:8000/api/auth/signup
-
 ...
 
 Modèle d'export d'un article en json :
