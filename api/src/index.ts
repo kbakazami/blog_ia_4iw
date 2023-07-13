@@ -12,7 +12,7 @@ import authRoutes from "./routes/auth";
 
 
 let corsOptions = {
-    origin: "http://localhost:8000"
+    origin: "*",
 };
 
 
@@ -36,6 +36,8 @@ app.get('/docs', SwaggerUi.setup(options));
 
 
 database.run();
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
+
+export default server;

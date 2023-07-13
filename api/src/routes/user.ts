@@ -14,7 +14,7 @@ userRoutes.use((req: express.Request, res: express.Response, next: express.NextF
 
 userRoutes.get('/', getUsers);
 userRoutes.get('/:id', getUser);
-userRoutes.delete('/', deleteUser);
+userRoutes.delete('/:id', deleteUser);
 
 // Test
 userRoutes.get('/test/all', allAccess);
