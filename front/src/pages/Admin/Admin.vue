@@ -1,11 +1,9 @@
 <template>
   <ArticlesList/>
 </template>
-
 <script>
-import ArticlesList from "components/ArticlesList.vue";
+import ArticlesList from "components/Admin/ArticlesList.vue";
 export default {
-  name: "HomePage",
   components: {
     ArticlesList,
   },
@@ -14,5 +12,5 @@ export default {
       ArticlesList,
     }
   }
-};
+}
 </script>
