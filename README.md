@@ -99,7 +99,8 @@ npm run dev
 ```
 
 Admin - List Articles : 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
+![Product Name Screen Shot](https://cdn.discordapp.com/attachments/1127879001633984704/1129148277795860570/image.png)
 
 ## Fabriqué avec 🛒
 
