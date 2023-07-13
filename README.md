@@ -5,14 +5,14 @@
 Blog AI est une application web qui permet de **générer des articles de blog** à partir d’un titre. 
 
 Utilisation :
-* Se connecter à l'application (seul les admin peuvent se connecter)
+* Se connecter à l'application
 * Saisir un titre dans un formulaire
 * L’article sera **généré par l'IA ChatGPT** 
 * Les articles générés seront publiables et **consultables sur le blog** après approbation de celui qui aura généré l’article. 
 * Il est aussi possible d'exporter les articles en version Json.
 * Les articles pourront être modifiés ou supprimés. 
 
-Actuellement les internaute peuvent consulter les articles postés sur le site mais ils ne peuvent pas s'inscrire ou se connecter. Seul les administrateurs peuvent se connecter à l'application, ajouter des articles, les éditer et les supprimer. 
+Actuellement les internaute peuvent consulter les articles postés sur le site. Seul les administrateurs peuvent ajouter des articles, les éditer et les supprimer. 
 
 #### Fonctionnalités
 Les appels à l’API se font en HTTP sur un serveur Node.js (Express).
@@ -43,45 +43,44 @@ Modèle d'export d'un article en json :
 
 ### Installation
 
-1. Obtenez une clé API gratuite sur https://example.com
-
-2. Clonez le projet
+1. Clonez le projet
 ```sh
 git clone https://github.com/kbakazami/blog_ia_4iw.git
 ```
-3. Aller dans le dossier /front
+
+2. Aller dans le dossier /front
 ```bash
 cd front
 ```
 
-4. Installation des dépendances
+3. Installation des dépendances
 ```bash
 yarn install
 ```
 
-5. Installer Quasar CLI, un outil en ligne de commande qui se chargera de booter un projet complet a votre place et de lancer le projet en mode developpement
+4. Installer Quasar CLI, un outil en ligne de commande qui se chargera de booter un projet complet a votre place et de lancer le projet
 ```bash
 yarn global add @quasar/cli
 # ou
 npm install -g @quasar/cli
 ```
 
-6. Revenir dans le dossier source
+5. Revenir dans le dossier source
 ```bash
 cd ..
 ```
 
-7. Pour la connexion à la BDD et compass
+6. Pour la connexion à la BDD et compass
 ```bash
 docker compose up -d
 ```
 
-8. Aller dans le dossier /api
+7. Aller dans le dossier /api
 ```bash
 cd api
 ```
 
-9. Installer les dépendances npm
+8. Installer les dépendances npm
 ```bash
 npm i
 ```
@@ -99,6 +98,8 @@ quasar dev
 npm run dev
 ```
 
+Admin - List Articles : 
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 ## Fabriqué avec 🛒
 
@@ -123,18 +124,21 @@ npm run dev
 
 ## Architecture 
 La partie front du projet se trouve dans le dossier "front". C'est dans ce dossier qu'on trouve les fichier vuejs.
+* Les entités (user/auth/articles) + les requêtes à l'api sont dans des stores pinia
+* Les forms ont vocation à être réutilisés. Ils sont donc dans /components
+* Les vues sont "fragmentées" : les vues de l'admin sont dans genre pages/Admin/fichier.vue et le front dans pages/fichier.vue (paril pour les components)
 
-La partie back se trouve dans le dossier "api". C'est là qu'on trouve la connection à l'api
+La partie back se trouve dans le dossier "api". C'est là qu'on trouve les routes API
 * /config : swager, api, dbb
 * /controllers : logique metier et methode CRUD
 * /middlerwares : securité, rôle, verification
-* /models : model de donnée pour mongodb
+* /models : models de donnée pour mongodb
 * /routes : les couches de logique metier, associer controller à une route
 
 
 ## Procédure en cas de bug
 En cas de bug identifier et reproduire le bug, isoler la cause, créer des tests puis vérifier les dépendances. 
-Effectuer des tests de régression : Avant de mettre en œuvre une solution potentielle, assurez-vous de tester votre application dans son ensemble pour éviter de provoquer d'autres bugs ou de casser des fonctionnalités existantes. Implémenter et tester des correctifs puis documenter les étapes de résolution
+Effectuer des tests de régression : Avant de mettre en place une solution potentielle, s'assurer de tester l'application dans son ensemble pour éviter de provoquer d'autres bugs ou de casser des fonctionnalités existantes. Implémenter et tester des correctifs puis documenter les étapes de résolution.
 
 
 ## Proposition mise en place d’un outil BI 
@@ -176,6 +180,8 @@ npm install vue-i18n@9
 # ou
 yarn add vue-i18n@9 
 ```
+
+* Faire l'update de l'utilisateur : modifier ses informations et aussi permettre d'ajouter' le rôle admin par exemple.
 
 
 ## Auteurs 🎭
