@@ -6,6 +6,15 @@ import db from "./config/db";
 import articleRoutes from "./routes/article";
 import bodyParser from "body-parser";
 import userRoutes from "./routes/user";
+// @ts-ignore
+import cors from "cors";
+import authRoutes from "./routes/auth";
+
+
+let corsOptions = {
+    origin: "http://localhost:8000"
+};
+
 
 dotenv.config();
 
@@ -14,10 +23,13 @@ const port = process.env.PORT;
 // @ts-ignore
 const database = new db(process.env.URI_DB);
 
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
-app.use('/article', articleRoutes);
-app.use('/user', userRoutes);
+app.use('/api/article', articleRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/auth', authRoutes);
 
 app.use('/docs', SwaggerUi.serve);
 app.get('/docs', SwaggerUi.setup(options));
