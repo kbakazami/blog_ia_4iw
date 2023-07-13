@@ -1,7 +1,6 @@
 # Challenge Stack : Node.js - Vue.js 🚀     <a name="readme-top"></a>
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-vue.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
-<p></p>
 
 ## 🤖 [Blog alimenté par IA](https://alexandrechevalier.notion.site/Blog-aliment-par-IA-7281948b5fc94fdc93eef70c06cc918f)
 Blog AI est une application web qui permet de **générer des articles de blog** à partir d’un titre. 
