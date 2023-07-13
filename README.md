@@ -1,6 +1,4 @@
-<a name="readme-top"></a>
-
-# Challenge Stack : Node.js - Vue.js 🚀 
+# Challenge Stack : Node.js - Vue.js 🚀 <a name="readme-top"></a>
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-vue.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
 ### 🤖 [Blog alimenté par IA](https://alexandrechevalier.notion.site/Blog-aliment-par-IA-7281948b5fc94fdc93eef70c06cc918f)
@@ -173,4 +171,4 @@ yarn add vue-i18n@9
 * **Wyvin STRUYS** _alias_ [@kbakazami](https://github.com/kbakazami)
 * **Rédouane RÉMILI** _alias_ [@FinOrfy](https://github.com/FinOrfy)
 
-<p align="right">(<a href="#readme-top">⬆🔝 retour en haut</a>)</p>
+<p align="right">(<a href="#readme-top">retour en haut⬆</a>)</p>
