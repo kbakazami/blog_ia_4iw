@@ -1,4 +1,4 @@
-# Challenge Stack : Node.js - Vue.js 🚀 <a name="readme-top"></a>
+# Challenge Stack : Node.js - Vue.js 🚀     <a name="readme-top"></a>
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-vue.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
 ### 🤖 [Blog alimenté par IA](https://alexandrechevalier.notion.site/Blog-aliment-par-IA-7281948b5fc94fdc93eef70c06cc918f)
@@ -16,11 +16,12 @@ Actuellement les internaute peuvent consulter les articles postés sur le site m
 
 #### Fonctionnalités
 Les appels à l’API se font en HTTP sur un serveur Node.js (Express).
-La liste des endpoints :
-* /ask?text=<votre question>
-* xx
+La liste des endpoint :
+* http://localhost:8000/api/auth/signin
+* http://localhost:8000/api/auth/signup
+...
 
-Modèle de réponse :
+Modèle d'export d'un article en json :
 ```json
 {
     "id": 1,
@@ -42,25 +43,47 @@ Modèle de réponse :
 
 ### Installation
 
-Les étapes pour installer le projet...
-
 1. Obtenez une clé API gratuite sur https://example.com
 
 2. Clonez le projet
 ```sh
 git clone https://github.com/kbakazami/blog_ia_4iw.git
 ```
+3. Aller dans le dossier /front
+```bash
+cd front
+```
 
-3. Installation des dépendances
+4. Installation des dépendances
 ```bash
 yarn install
 ```
 
-4. Installer Quasar CLI, un outil en ligne de commande qui se chargera de booter un projet complet a votre place et de lancer le projet en mode developpement
+5. Installer Quasar CLI, un outil en ligne de commande qui se chargera de booter un projet complet a votre place et de lancer le projet en mode developpement
 ```bash
 yarn global add @quasar/cli
 # ou
 npm install -g @quasar/cli
+```
+
+6. Revenir dans le dossier source
+```bash
+cd ..
+```
+
+7. Pour la connexion à la BDD et compass
+```bash
+docker compose up -d
+```
+
+8. Aller dans le dossier /api
+```bash
+cd api
+```
+
+9. Installer les dépendances npm
+```bash
+npm i
 ```
 
 
@@ -71,7 +94,10 @@ npm install -g @quasar/cli
 quasar dev
 ```
 
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+2. Lancer le serveur node
+```bash
+npm run dev
+```
 
 
 ## Fabriqué avec 🛒
@@ -98,32 +124,18 @@ Ensuite vous pouvez montrer ce que vous obtenez au final...
 ## Architecture 
 La partie front du projet se trouve dans le dossier "front". C'est dans ce dossier qu'on trouve les fichier vuejs.
 
-La partie back se trouve dans le dossier "api". C'est là qu'on trouve la connection à l'api de chatGPT
-config : swager, api, dbb
-controller : logique metier et methode CRUD
-middlerwares : securité, rôle, verification
-model : model de donnée pour mongodb
-route : les couches de logique metier, associer controller à une route
-.env
+La partie back se trouve dans le dossier "api". C'est là qu'on trouve la connection à l'api
+* /config : swager, api, dbb
+* /controllers : logique metier et methode CRUD
+* /middlerwares : securité, rôle, verification
+* /models : model de donnée pour mongodb
+* /routes : les couches de logique metier, associer controller à une route
 
 
 ## Procédure en cas de bug
+En cas de bug identifier et reproduire le bug, isoler la cause, créer des tests puis vérifier les dépendances. 
+Effectuer des tests de régression : Avant de mettre en œuvre une solution potentielle, assurez-vous de tester votre application dans son ensemble pour éviter de provoquer d'autres bugs ou de casser des fonctionnalités existantes. Implémenter et tester des correctifs puis documenter les étapes de résolution
 
-
-## Journal de bord 📖 
-1. Lundi : 
-    - Choix des technologies
-    - Planification et organisation des taches
-    - Lancement structure du projet
-    - Intégration du dasboard avec les articles écrit en dur
-    - Début des méthodes CRUD
-2. Mardi : 
-    - Front : Difficulté sur la récupération des données d'un article spécifique pour l'éditer. Possibilité de récupérer un article et de le modifier 
-    - Back : On constate que l'api ChatGPT est limité voir même indisponible pour des comptes créés il y a plusieurs mois. Même un nouveau compte n'a pu faire que quelque requête teste qui non pas fonctionnés mais qui ont dépassé les limites acceptées. 
-3. Mercredi :
-    - XX
-4. Jeudi :
-    - Sécurisation des routes "/admin/..." 
 
 ## Proposition mise en place d’un outil BI 
 La "balise Google Analytics" est une bibliothèque JavaScript permettant de mesurer la manière dont les utilisateurs interagissent avec notre site Web. La balise Google Analytics doit être ajoutée en haut de la balise <head> et avant toute autre balise de script ou CSS.
@@ -140,6 +152,7 @@ ga('create', 'UA-XXXXX-Y', 'auto');
 ga('send', 'pageview');
 </script>
 ```
+
 Les données collectées par la balise Google :
 * Temps total passé par un utilisateur sur votre site
 * Temps passé par un utilisateur sur chaque page et dans quel ordre
@@ -171,4 +184,4 @@ yarn add vue-i18n@9
 * **Wyvin STRUYS** _alias_ [@kbakazami](https://github.com/kbakazami)
 * **Rédouane RÉMILI** _alias_ [@FinOrfy](https://github.com/FinOrfy)
 
-<p align="right">(<a href="#readme-top">retour en haut⬆</a>)</p>
+<p align="right">(<a href="#readme-top">retour en haut ⬆</a>)</p>
