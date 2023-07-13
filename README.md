@@ -1,7 +1,7 @@
 # Challenge Stack : Node.js - Vue.js 🚀     <a name="readme-top"></a>
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-vue.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
-### 🤖 [Blog alimenté par IA](https://alexandrechevalier.notion.site/Blog-aliment-par-IA-7281948b5fc94fdc93eef70c06cc918f)
+## 🤖 [Blog alimenté par IA](https://alexandrechevalier.notion.site/Blog-aliment-par-IA-7281948b5fc94fdc93eef70c06cc918f)
 Blog AI est une application web qui permet de **générer des articles de blog** à partir d’un titre. 
 
 Utilisation :
@@ -14,16 +14,16 @@ Utilisation :
 
 Actuellement les internaute peuvent consulter les articles postés sur le site. Seul les administrateurs peuvent ajouter des articles, les éditer et les supprimer. 
 
-#### Fonctionnalités
-Les appels à l’API se font en HTTP sur un serveur Node.js (Express).
+### Fonctionnalités : 
+- Les appels à l’API se font en HTTP sur un serveur Node.js (Express).
 Quelque exemple des endpoint :
 * http://localhost:8000/api/auth/signin
 * http://localhost:8000/api/auth/signup
 ...
 
-La route /admin est "protégée", on peut y accéder que si on est admin (le user est stocké dans le localstorage pour pouvoir accéder à ses données genre le rôle) et pour le reste ça renvoie un code 404.
+- La route /admin est "protégée", on peut y accéder que si on est admin (le user est stocké dans le localstorage pour pouvoir accéder à ses données genre le rôle) et pour le reste ça renvoie un code 404.
 
-Modèle d'export d'un article en json :
+- Modèle d'export d'un article en json :
 ```json
 {
     "id": 1,
@@ -36,14 +36,14 @@ Modèle d'export d'un article en json :
 ```
 
 
-### Pré-requis 🎨
+## Pré-requis 🎨
 
 - Node 12+ pour Quasar CLI avec Webpack, Node 14+ pour Quasar CLI avec Vite.
 - Yarn v1 (fortement recommandé), ou NPM.
 - Docker
 
 
-### Installation
+## Installation
 
 1. Clonez le projet
 ```sh
