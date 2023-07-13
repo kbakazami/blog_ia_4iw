@@ -1,9 +1,11 @@
-# Challenge Stack : Node.js - Vue.js 🚀 
 <a name="readme-top"></a>
+
+# Challenge Stack : Node.js - Vue.js 🚀 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/made-with-vue.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 
 ### 🤖 [Blog alimenté par IA](https://alexandrechevalier.notion.site/Blog-aliment-par-IA-7281948b5fc94fdc93eef70c06cc918f)
 Blog AI est une application web qui permet de **générer des articles de blog** à partir d’un titre. 
+
 Utilisation :
 * Se connecter à l'application (seul les admin peuvent se connecter)
 * Saisir un titre dans un formulaire
@@ -14,7 +16,7 @@ Utilisation :
 
 Actuellement les internaute peuvent consulter les articles postés sur le site mais ils ne peuvent pas s'inscrire ou se connecter. Seul les administrateurs peuvent se connecter à l'application, ajouter des articles, les éditer et les supprimer. 
 
-##### Fonctionnalités
+#### Fonctionnalités
 Les appels à l’API se font en HTTP sur un serveur Node.js (Express).
 La liste des endpoints :
 * /ask?text=<votre question>
@@ -23,7 +25,7 @@ La liste des endpoints :
 Modèle de réponse :
 ```json
 {
-	"id": 1,
+    "id": 1,
     "title": "This framework is amazing",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nisi, convallis sed justo eget, hendrerit sodales dui. Praesent odio orci, sagittis at purus in, volutpat semper metus. Duis mauris urna, cursus at metus eu, maximus placerat enim.",
     "author": "John Doe",
@@ -77,13 +79,21 @@ Ensuite vous pouvez montrer ce que vous obtenez au final...
 ## Fabriqué avec 🛒
 
 [x] [Vuejs](https://vuejs.org/) - Pour toute la partie front de l'application
+
 [x] [Quasar](https://quasar.dev/) - Une surcouche de vuejs pour augmente la réactivité et les performance de l'application vuejs
+
 [x] [Node](https://nodejs.org/) - Permet le développement de la partie Backend de l'application ainsi que l'API
+
 [x] [Express.js](https://expressjs.com/fr/) - Améliore le développement sur Node
+
 [x] [Mongodb](https://www.mongodb.com/fr-fr) - Base de donnée
+
 [x] [Docker](https://www.docker.com/) - Pour lancer mongodb en arrière plan
+
 [x] [Github](https://github.com/) - Versionning
+
 [x] [Trello](https://trello.com/fr) - Suivi du projet et des tâches
+
 [x] [Swagger](https://swagger.io/) - Permet de générer une doc pour l'API
 
 
@@ -118,7 +128,8 @@ route : les couches de logique metier, associer controller à une route
     - Sécurisation des routes "/admin/..." 
 
 ## Proposition mise en place d’un outil BI 
-La bibliothèque analytics.js (également appelée "balise Google Analytics") est une bibliothèque JavaScript permettant de mesurer la manière dont les utilisateurs interagissent avec votre site Web. La balise Google Analytics doit être ajoutée en haut de la balise <head> et avant toute autre balise de script ou CSS
+La "balise Google Analytics" est une bibliothèque JavaScript permettant de mesurer la manière dont les utilisateurs interagissent avec notre site Web. La balise Google Analytics doit être ajoutée en haut de la balise <head> et avant toute autre balise de script ou CSS.
+
 Modèle de balise Google Analytics :
 ```js
 <script>
@@ -160,6 +171,6 @@ yarn add vue-i18n@9
 
 * **Sofia CHAUDHRY** _alias_ [@AifosXI](https://github.com/AifosXI)
 * **Wyvin STRUYS** _alias_ [@kbakazami](https://github.com/kbakazami)
-* **Rédouane RÉMILI** _alias_ [@Kaitorem](https://github.com/Kaitorem)
+* **Rédouane RÉMILI** _alias_ [@FinOrfy](https://github.com/FinOrfy)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">⬆🔝 retour en haut</a>)</p>
