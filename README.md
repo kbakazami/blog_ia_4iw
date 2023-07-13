@@ -114,23 +114,23 @@ npm run dev
 
 ## Fabriqué avec 🛒
 
-[x] [Vuejs](https://vuejs.org/) - Pour toute la partie front de l'application
+✔ [Vuejs](https://vuejs.org/) - Pour toute la partie front de l'application
 
-[x] [Quasar](https://quasar.dev/) - Une surcouche de vuejs pour augmente la réactivité et les performance de l'application vuejs
+✔ [Quasar](https://quasar.dev/) - Une surcouche de vuejs pour augmente la réactivité et les performance de l'application vuejs
 
-[x] [Node](https://nodejs.org/) - Permet le développement de la partie Backend de l'application ainsi que l'API
+✔ [Node](https://nodejs.org/) - Permet le développement de la partie Backend de l'application ainsi que l'API
 
-[x] [Express.js](https://expressjs.com/fr/) - Améliore le développement sur Node
+✔ [Express.js](https://expressjs.com/fr/) - Améliore le développement sur Node
 
-[x] [Mongodb](https://www.mongodb.com/fr-fr) - Base de donnée
+✔ [Mongodb](https://www.mongodb.com/fr-fr) - Base de donnée
 
-[x] [Docker](https://www.docker.com/) - Pour lancer mongodb en arrière plan
+✔ [Docker](https://www.docker.com/) - Pour lancer mongodb en arrière plan
 
-[x] [Github](https://github.com/) - Versionning
+✔ [Github](https://github.com/) - Versionning
 
-[x] [Trello](https://trello.com/fr) - Suivi du projet et des tâches
+✔ [Trello](https://trello.com/fr) - Suivi du projet et des tâches
 
-[x] [Swagger](https://swagger.io/) - Permet de générer une doc pour l'API
+✔ [Swagger](https://swagger.io/) - Permet de générer une doc pour l'API
 
 
 ## Architecture 
