@@ -21,6 +21,8 @@ Quelque exemple des endpoint :
 * http://localhost:8000/api/auth/signup
 ...
 
+La route /admin est "protégée", on peut y accéder que si on est admin (le user est stocké dans le localstorage pour pouvoir accéder à ses données genre le rôle) et pour le reste ça renvoie un code 404.
+
 Modèle d'export d'un article en json :
 ```json
 {
@@ -106,7 +108,7 @@ npm run dev
 
 ![Admin front](https://cdn.discordapp.com/attachments/1127879001633984704/1129148680990109746/image.png)
 
-* Front - Si on est admin
+* Front - Si on est user et/ou pas connecté
 
 ![User front](https://cdn.discordapp.com/attachments/1127879001633984704/1129153553722773614/image.png)
 
@@ -178,10 +180,12 @@ Les données collectées par la balise Google :
 
 
 ## Propositions d’évolution de l’architecture
-* Actuellement la connexion à l'application est uniquement possible pour les administrateurs et eux seul peuvent ajouter, éditer ou supprimer des articles. C'est-à-dire que pour un internaute, il n'est pas possible de s'inscrire et de se connecter sur le site. Ils ne peuvent que consulter les articles.
-Dans une nouvelle version de l'application les internautes pourront s'inscrire et se connecter sur l'application afin de poster des commentaires pour chaque articles. 
+* Actuellement les administrateurs seul peuvent ajouter, éditer ou supprimer des articles. C'est-à-dire que les internautes ne peuvent que consulter les articles.
+Dans une nouvelle version de l'application les internautes pourront poster des commentaires pour chaque articles. 
 
-* Dans une future évolution de l'application, il sera possible d'ajouter un système de catégories pour les différents articles. Une nouvelle table "category" pourra être ajouté à la BDD et connecté en "many To many" à la table article. Ainsi les articles pourront être organisés par catégorie. 
+* Dans une future évolution de l'application, il sera possible d'ajouter un système de catégories pour les différents articles. Une nouvelle table "category" pourra être ajouté à la BDD. Ainsi les articles pourront être organisés par catégorie. 
+
+* Faire l'update de l'utilisateur : modifier ses informations et aussi permettre d'ajouter' le rôle admin par exemple.
 
 * I18n est un plugin d'internationalisation pour Vue.js. Il permet de gérer les taductions de l'application. Il s'agit d'ouvrir le projet à un public plus large dans dans une nouvelle version de l'application. L'installation est très simple :
 ```bash
@@ -189,8 +193,6 @@ npm install vue-i18n@9
 # ou
 yarn add vue-i18n@9 
 ```
-
-* Faire l'update de l'utilisateur : modifier ses informations et aussi permettre d'ajouter' le rôle admin par exemple.
 
 
 ## Auteurs 🎭
