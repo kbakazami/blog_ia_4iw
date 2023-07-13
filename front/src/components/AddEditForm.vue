@@ -16,7 +16,7 @@
           />
         </template>
       </q-input>
-      <q-btn label="Save" type="submit" color="primary"/>
+      <q-btn label="Register" type="submit" color="primary"/>
     </q-form>
   </div>
 </template>
@@ -37,25 +37,6 @@ export default {
     const route = useRoute();
     const name = route.name;
 
-    //Code to edit user - not working
-    //
-    // const options = ['admin','user'];
-    //
-    // const userId = route.params.id;
-    //
-    // let user = null;
-    //
-    //
-    // if(userId)
-    // {
-    //   userStore.getUserById(userId);
-    //   user = userStore.singleUser;
-    //
-    //   firstname = ref(user.firstname);
-    //   lastname = ref(user.lastname);
-    //   email = ref(user.email);
-    // }
-
     return {
       email,
       firstname,
@@ -68,16 +49,15 @@ export default {
           firstName: firstname.value,
           email: email.value,
           password: password.value,
-          role: ['user'],
+          roles: ["user"],
         }
+
         if(name === 'register') {
           userStore.createUser(newUser);
-
+          router.push({name: 'login'}).then(() => {
+            router.go();
+          });
         }
-        // router.push({name: 'login'}).then(() => {
-        //   router.go()
-        // });
-
       }
     }
   }

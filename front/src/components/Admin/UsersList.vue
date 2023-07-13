@@ -2,7 +2,7 @@
   <div>
     <q-table
       title="Users"
-      :rows="users"
+      :rows="usersStore.users"
       :columns="columns"
       row-key="name"
       :filter="filter"
@@ -21,15 +21,15 @@
         <q-tr :props="props" class="table-tr">
           <q-td key="id" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">ID</span>
-            {{ props.row.id }}
+            {{ props.row._id }}
           </q-td>
           <q-td key="firstname" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Firstname</span>
-            {{ props.row.firstname }}
+            {{ props.row.firstName }}
           </q-td>
           <q-td key="lastname" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Lastname</span>
-            {{props.row.lastname }}
+            {{props.row.lastName }}
           </q-td>
           <q-td key="email" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Email</span>
@@ -37,15 +37,12 @@
           </q-td>
           <q-td key="role" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Role(s)</span>
-            {{ props.row.role }}
+            {{ props.row.roles }}
           </q-td>
           <q-td key="actions" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Actions</span>
-<!--            <router-link :to="{name: 'editUser', params: {id: props.row.id}}">-->
-<!--              <q-btn  icon="edit" class="col-2"/>-->
-<!--            </router-link>-->
 
-            <q-btn name="delete" icon='delete' @click="deleteArticle(props.row.id)"/>
+            <q-btn name="delete" icon='delete' @click="deleteUser(props.row._id)"/>
           </q-td>
         </q-tr>
       </template>
@@ -58,13 +55,14 @@
 import { exportFile, useQuasar } from 'quasar'
 import { ref } from 'vue';
 import {useUserStore} from "src/stores/user";
+import {useRouter} from "vue-router";
 
 export default {
   name: "Admin",
   setup() {
     const usersStore = useUserStore();
-    const users = usersStore.users;
-    const $q = useQuasar()
+
+    usersStore.getAllUsers();
 
     const initialPagination = {
       sortBy: 'desc',
@@ -83,13 +81,13 @@ export default {
     ]
 
     return {
-      users,
       columns,
+      usersStore,
       filter: ref(''),
       initialPagination,
-      deleteArticle(articleId)
+      deleteUser(userId)
       {
-        //TODO: Delete User
+        usersStore.deleteUser(userId);
       },
     };
   },

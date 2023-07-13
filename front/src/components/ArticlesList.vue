@@ -2,7 +2,7 @@
   <div>
     <q-table
       title="Articles"
-      :rows="articles"
+      :rows="articlesStore.articles"
       row-key="title"
       grid
       hide-header
@@ -40,7 +40,6 @@
     <div class="row justify-center q-mt-md">
       <q-pagination
         v-model="pagination.page"
-        color="grey-8"
         :max="pagesNumber"
         size="sm"
       />
@@ -65,14 +64,15 @@ export default {
       descending: false,
       page: 1,
       rowsPerPage: 12,
-    })
+    });
+
+    const pagesNumber = computed(() => Math.ceil(articles.length / pagination.value.rowsPerPage));
 
     return {
       filter: ref(''),
-      articles,
       pagination,
-
-      pagesNumber: computed(() => Math.ceil(articles.length / pagination.value.rowsPerPage))
+      pagesNumber,
+      articlesStore,
     };
   },
 };

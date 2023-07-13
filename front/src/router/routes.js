@@ -32,9 +32,21 @@ const routes = [
       const publicPages = ['/login'];
       const authRequired = !publicPages.includes(to.path);
 
+      let isAdmin = false;
+      const user = authStore.user;
+
+      if(user)
+      {
+        user.roles.forEach(role => {
+          if(role === 'ROLE_ADMIN') {
+            isAdmin = true;
+          }
+        });
+      }
+
       if(authRequired && !authStore.user) {
         next('/login');
-      }else if(authRequired && authStore.user && authStore.user.role !== 'Admin')
+      }else if(authRequired && authStore.user && !isAdmin)
       {
         next('/');
       }else {
