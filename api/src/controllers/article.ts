@@ -37,6 +37,10 @@ export const getArticle: RequestHandler = async (req: Request, res: Response) =>
     }
 }
 
+/**
+ * /api/article/generate
+ * description: Genere un article sur le sujet passé en paramètre grace à la méthode createCompletion de l'API OpenAI, on utilise le modèle text-davinci-002 et on passe en paramètre le titre de l'article.
+ */
 export const generateArticle: RequestHandler = async (req: Request, res: Response) => {
     try {
         const completion = await openai.createCompletion({
