@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
-import {useUserStore} from "src/stores/user";
 import { useRouter } from "vue-router";
+import axios from "axios";
+
+const API_URL = "http://localhost:8000/api/auth";
 
 export const useAuthStore = defineStore("auth", {
   state:() => ({
@@ -13,25 +15,20 @@ export const useAuthStore = defineStore("auth", {
     },
   },
   actions: {
-    login(email, password){
-      const userStore = useUserStore().users;
-      const index = userStore.findIndex((user) => user.email === email && user.password === password);
+    async login(credentials){
+      try {
+        const response = await axios.post(`${API_URL}/signin`, credentials);
 
-      if(index === -1)
-      {
-        return false;
+        localStorage.setItem('user', JSON.stringify(response.data));
+
+        return true;
+      } catch (error) {
+        console.log("Couldn't login : ", error);
       }
 
-      this.user = userStore[index];
-
-      localStorage.setItem('user', JSON.stringify(this.user));
-
-      return true;
 
     },
     logout() {
-      const router = useRouter();
-
       this.user = null;
       localStorage.removeItem('user');
     },

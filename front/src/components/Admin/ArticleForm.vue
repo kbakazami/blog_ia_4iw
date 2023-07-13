@@ -5,20 +5,13 @@
 
     <q-input
       filled
-      v-model="id"
-      label="ID"
-      lazy-rules
-    />
-
-    <q-input
-      filled
       v-model="title"
       label="Title"
       lazy-rules
       :rules="[ val => val && val.length > 0 || 'Please enter a title']"
     />
 
-    <div v-if="!article">
+    <div v-if="!articleId">
       <q-btn label="Generate" color="primary" @click="generateContent()"/>
       <div class="q-mt-lg">{{ response }}</div>
     </div>
@@ -29,7 +22,7 @@
       label="Response"
       type="textarea"
       lazy-rules
-      v-if="article"
+      v-if="article && articleId"
       :rules="[ val => val && val.length > 0 || 'Please enter a title']"
     />
 
@@ -47,63 +40,81 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import {onBeforeMount, reactive, ref} from "vue";
 import {useArticlesStore} from "src/stores/articles";
 import {useRoute, useRouter} from "vue-router";
+import {useAuthStore} from "src/stores/auth";
+
 export default {
   setup() {
-    let id = ref(null);
+    //Values to create a new article
     let title = ref(null);
     let isPublished = ref(false);
     let response = ref('The answer will be displayed here');
 
     const articleStore = useArticlesStore();
 
+    const authStore = useAuthStore();
+    const user = authStore.user;
+
+    //Get the id in the url
     const route = useRoute();
     const router = useRouter();
     const articleId = route.params.id;
-    let article = null;
 
-    if(articleId)
-    {
-      articleStore.getArticle(articleId);
-      article = articleStore.singleArticle;
+    //Reactive because we need to access the value inside the onBeforeMount
+    let article = reactive([]);
 
-      title = ref(article.title);
-      id = ref(article.id);
-      response = ref(article.content);
-      isPublished = ref(article.isPublished);
-    }
+    //Get the data before it's mounted or else we can't have them because they are loaded after
+    onBeforeMount(async () => {
+        if(articleId)
+        {
+          await articleStore.getArticle(articleId)
+          article = articleStore.singleArticle;
+
+          title.value = article.title;
+          response.value = article.content;
+          isPublished.value = article.isPublished;
+        }
+    })
 
     return {
       onSubmit() {
-        const newArticle = {
-          id: id.value,
-          title: title.value,
-          content: response.value,
-          author: 'sofia',
-          createdAt: new Date(),
-          isPublished: isPublished.value,
-        }
-
-        if(!article)
+        if(!articleId)
         {
+          const newArticle = {
+            title: title.value,
+            content: response.value,
+            author: user.firstName,
+            isPublished: isPublished.value,
+          }
           articleStore.createArticle(newArticle);
         } else {
+
+          const newArticle = {
+            _id: articleId,
+            title: title.value,
+            content: response.value,
+            author: user.firstName,
+            isPublished: isPublished.value,
+          }
           articleStore.updateArticle(newArticle);
         }
 
-        router.push({name: 'articles'});
+        //Redirect + reload
+        router.push({name: 'articles'}).then(() => {
+          router.go();
+        });
 
       },
       generateContent() {
-        response.value = 'This is the response !';
+        response.value = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis facilisis cursus. Donec nec sagittis odio. Cras dapibus diam ac malesuada sagittis. Donec pulvinar massa lectus, vel varius urna efficitur non. Vestibulum sollicitudin sapien nec risus mattis, vel molestie neque varius. In hendrerit et lacus sagittis sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis tristique quis dolor non convallis. Aenean quis tempus felis. Vestibulum tempor quam commodo neque venenatis, a scelerisque ante tempor. Nulla facilisi. Sed in placerat mi. Praesent mollis a est eu consectetur. Proin et elit fermentum, luctus lorem vitae, faucibus velit. Donec rhoncus est at est posuere, congue commodo elit varius. Phasellus gravida, nunc vitae gravida feugiat, dolor diam aliquet odio, id ullamcorper lectus nisi at leo. Donec laoreet massa sit amet diam tincidunt, at gravida magna laoreet.';
       },
-      id,
       title,
       response,
       article,
-      isPublished
+      isPublished,
+      articleId
     }
   }
 }

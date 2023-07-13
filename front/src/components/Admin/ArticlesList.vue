@@ -2,7 +2,7 @@
   <div>
     <q-table
       title="Articles"
-      :rows="articles"
+      :rows="articlesStore.articles"
       :columns="columns"
       row-key="name"
       :filter="filter"
@@ -31,7 +31,7 @@
         <q-tr :props="props" class="table-tr">
           <q-td key="id" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">ID</span>
-            {{ props.row.id }}
+            {{ props.row._id }}
           </q-td>
           <q-td key="name" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Title</span>
@@ -45,21 +45,17 @@
             <span class="table-label-mobile">Author</span>
             {{ props.row.author }}
           </q-td>
-          <q-td key="createdAt" :props="props" class="table-wrapper-td">
-            <span class="table-label-mobile">Created At</span>
-            {{ props.row.createdAt }}
-          </q-td>
           <q-td key="isPublished" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Publish</span>
-            <q-btn class="col-2" @click="changeVisibility(props.row.id)" :icon="props.row.isPublished === false ? 'visibility_off' : 'visibility'"/>
+            <q-btn class="col-2" @click="changeVisibility(props.row._id, props.row.isPublished)" :icon="props.row.isPublished === false ? 'visibility_off' : 'visibility'"/>
           </q-td>
           <q-td key="actions" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Actions</span>
-            <router-link :to="{name: 'editArticle', params: {id: props.row.id}}">
+            <router-link :to="{name: 'editArticle', params: {id: props.row._id}}">
               <q-btn  icon="edit" class="col-2"/>
             </router-link>
 
-            <q-btn name="delete" icon='delete' @click="deleteArticle(props.row.id)"/>
+            <q-btn name="delete" icon='delete' @click="deleteArticle(props.row._id)"/>
           </q-td>
         </q-tr>
       </template>
@@ -72,13 +68,17 @@
 import { useArticlesStore } from "src/stores/articles";
 import { exportFile, useQuasar } from 'quasar'
 import { ref } from 'vue';
+import {useRoute, useRouter} from "vue-router";
 
 export default {
   name: "Admin",
   setup() {
     const articlesStore = useArticlesStore();
-    const articles = articlesStore.articles;
-    const $q = useQuasar()
+    articlesStore.getAllArticles();
+
+    const $q = useQuasar();
+
+    const router = useRouter();
 
     const initialPagination = {
       sortBy: 'desc',
@@ -88,17 +88,16 @@ export default {
     };
 
     const columns = [
-      { name: 'id', required: true, label: 'ID', align: 'left', field: articles => articles.id, sortable: true },
+      { name: 'id', required: true, label: 'ID', align: 'left', field: articles => articles._id, sortable: true },
       { name: 'name', required: true, label: 'Title', align: 'left', field: articles => articles.title, sortable: true },
       { name: 'content', required: true, label: 'Content', align: 'left', field: '', sortable: true },
       { name: 'author', required: true, label: 'Author', align: 'left', field: articles => articles.author, sortable: true },
-      { name: 'createdAt', required: true, label: 'Created At', align: 'left', field: articles => articles.createdAt, sortable: true },
       { name: 'isPublished', required: true, label: 'Published', align: 'left', field: articles => articles.isPublished, sortable: true},
       { name: 'actions', required: true, label: 'Actions', align: 'left', field: 'Actions' },
     ]
 
     return {
-      articles,
+      articlesStore,
       columns,
       filter: ref(''),
       initialPagination,
@@ -109,16 +108,30 @@ export default {
           return value;
         }
       },
-      changeVisibility(articleId)
+      changeVisibility(articleId, isPublished)
       {
-        articlesStore.changeVisibility(articleId);
+        let newValue = null;
+
+        //Put the contrary of the actual value to set it to true or false
+        newValue = !isPublished;
+
+        const updatedArticle = {
+          _id: articleId,
+          isPublished: newValue
+        }
+
+        articlesStore.updateArticle(updatedArticle);
+
+        router.push({name: 'articles'}).then(() => {
+          router.go();
+        });
       },
       deleteArticle(articleId)
       {
         articlesStore.deleteArticle(articleId);
       },
       exportTableToJson () {
-        const content = JSON.stringify(articles, null, " ");
+        const content = JSON.stringify(articlesStore, null, " ");
 
         const status = exportFile(
           'json-content-table.json',

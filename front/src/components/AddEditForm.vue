@@ -4,7 +4,6 @@
     <q-form
       @submit="onSubmit"
       class="q-gutter-md">
-      <q-input filled v-model="id" label="ID" />
       <q-input filled v-model="firstname" label="Firstname" />
       <q-input filled v-model="lastname" label="Lastname" />
       <q-input filled v-model="email" label="Email" />
@@ -17,15 +16,7 @@
           />
         </template>
       </q-input>
-<!--      <q-select-->
-<!--        filled-->
-<!--        v-model="roles"-->
-<!--        multiple-->
-<!--        :options="options"-->
-<!--        label="Multiple"-->
-<!--        style="width: 250px"-->
-<!--      />-->
-      <q-btn label="Save" type="submit" color="primary"/>
+      <q-btn label="Register" type="submit" color="primary"/>
     </q-form>
   </div>
 </template>
@@ -37,64 +28,36 @@ export default {
   setup() {
     const userStore = useUserStore();
 
-    let id = ref(null);
     let firstname = ref(null);
     let lastname = ref(null);
     let email = ref(null);
     let password = ref(null);
-    let roles = ref(null);
 
-    const options = ['admin','user'];
-
-    const route = useRoute();
     const router = useRouter();
-
+    const route = useRoute();
     const name = route.name;
-    const userId = route.params.id;
-
-    let user = null;
-
-    if(userId)
-    {
-      userStore.getUserById(userId);
-      user = userStore.singleUser;
-      // console.log(user);
-      id = ref(user.id);
-      firstname = ref(user.firstname);
-      lastname = ref(user.lastname);
-      email = ref(user.email);
-      console.log(user)
-
-      // user.roles.forEach(role => {
-      //   console.log(role);
-      // })
-      roles = ref(user.roles);
-    }
 
     return {
-      id,
       email,
       firstname,
       lastname,
       password,
-      roles,
-      options,
       isPwd: ref(true),
       onSubmit() {
         const newUser = {
-          id: id.value,
-          firstname: firstname.value,
-          lastname: lastname.value,
+          lastName: lastname.value,
+          firstName: firstname.value,
           email: email.value,
           password: password.value,
-          role: ['user'],
+          roles: ["user"],
         }
 
         if(name === 'register') {
           userStore.createUser(newUser);
+          router.push({name: 'login'}).then(() => {
+            router.go();
+          });
         }
-
-        router.push({name: 'login'});
       }
     }
   }

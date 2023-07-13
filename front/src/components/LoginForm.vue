@@ -5,13 +5,21 @@
       @submit="onSubmit"
       class="q-gutter-md">
       <q-input filled v-model="email" label="Email" />
-      <q-input filled v-model="password" label="Password" />
+      <q-input v-model="password" label="Password" filled :type="isPwd ? 'password' : 'text'">
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
+          />
+        </template>
+      </q-input>
       <q-btn label="Login" type="submit" color="primary" no-caps/>
     </q-form>
   </div>
 </template>
+
 <script>
-import { useUserStore } from "src/stores/user";
 import { ref } from "vue";
 import {useRoute, useRouter} from "vue-router";
 import {useAuthStore} from "src/stores/auth";
@@ -24,19 +32,19 @@ export default {
 
     const router = useRouter();
 
-    // const isLoggedIn = userStore.isLoggedIn();
-
-
     return {
       email,
       password,
-
+      isPwd: ref(true),
       onSubmit() {
 
-        //TODO: Check if user exist + check if password match
-        if (authStore.login(email.value, password.value))
-        {
+        const credentials = {
+          email: email.value,
+          password: password.value
+        };
 
+        if (authStore.login(credentials))
+        {
           router.push({name: 'home'})
             .then(() => { router.go(); });
         }

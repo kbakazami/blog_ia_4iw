@@ -1,61 +1,56 @@
 import { defineStore } from "pinia";
-import Admin from "pages/Admin/Admin.vue";
+import axios from 'axios';
+
+const API_URL = "http://localhost:8000/api/user";
 
 export const useUserStore = defineStore("users", {
   state: () => ({
-    users: [
-      {
-        id:1,
-        firstname:"Sofia",
-        lastname: "Aifos",
-        email: 'sofia@mail.fr',
-        password: 'secret!',
-        role: 'Admin',
-      },
-      {
-        id:2,
-        firstname:"John",
-        lastname: "Doe",
-        email: 'johndoe@mail.fr',
-        password: 'secret!2',
-        role:'User'
-      }
-    ],
+    users: [],
     singleUser: null,
   }),
   actions: {
     async createUser(newUser) {
-      this.users.push(newUser);
+      try {
+        const response = await axios.post('http://localhost:8000/api/auth/signup', newUser);
+        this.users.push(response.data);
+      } catch (error) {
+        console.log("Couldn't create the user : ", error);
+      }
     },
     async getAllUsers() {
-
+      try {
+        const response = await axios.get(`${API_URL}/`);
+        this.users = response.data;
+      } catch (error) {
+        console.error("Can't get the users :", error);
+      }
     },
     async getUserById(userId) {
-      const index = this.users.findIndex((user) => user.id === parseInt(userId));
+      try {
+        const response = await axios.get(`${API_URL}/${userId}`);
+        const index = this.users.findIndex((user) => user._id === parseInt(userId));
 
-      if(index !== -1) {
-        this.singleUser = this.users[index];
+        if(index !== -1) {
+          this.singleUser = response.data;
+        }
+      }catch (error) {
+        console.error("Can't get the user by id :", error);
       }
-    },
-    async getUserByEmail(userEmail) {
-      const index = this.users.findIndex((user) => user.email === userEmail);
 
-      if(index !== -1) {
-        this.singleUser = this.users[index];
-      }
     },
-    async updateUser(updatedUser){
-      const index = this.users.findIndex((user) => user.email === updatedUser.id);
-      if (index !== -1) {
-        this.users.splice(index, 1, updatedUser);
-      }
-    },
-    async deleteUser(userEmail){
-      const index = this.users.findIndex((user) => user.email === userEmail);
+    async deleteUser(userId){
+      try {
+        await axios.delete(`${API_URL}/${userId}`);
 
-      if(index !== -1) {
-        this.users.splice(index, 1);
+        const index = this.users.findIndex((user) => user._id === userId);
+
+        if(index !== -1) {
+          this.users.splice(index, 1);
+        }
+      }catch (error) {
+        console.error("Couldn't delete the user :", error);
       }
+
     }
   }
 })

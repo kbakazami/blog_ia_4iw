@@ -10,7 +10,7 @@
           </q-toolbar-title>
           <q-btn @click="this.$route.go()" class="q-pa-sm q-px-lg" dense no-caps  label="Login" to="/login" v-if="!user"/>
           <q-btn @click="this.$route.go()" class="q-pa-sm q-px-lg q-ml-sm" dense no-caps  label="Register" to="/register" v-if="!user"/>
-          <q-btn flat round dense to="/admin" icon="lock" v-if="user && user.role === 'Admin'" />
+          <q-btn flat round dense to="/admin" icon="lock" v-if="user && isAdmin" />
           <q-btn class="q-pa-sm q-px-lg" dense no-caps label="Logout" @click="logout" v-if="user"/>
         </q-toolbar>
       </q-header>
@@ -35,16 +35,21 @@ export default {
     const authStore = useAuthStore();
     const user = authStore.user ?? null;
     const router = useRouter();
+    let isAdmin = false;
+
     if(user)
     {
-      console.log('logged in');
-    }
-    else {
-      console.log('not logged in');
+      user.roles.forEach(role => {
+        if(role === 'ROLE_ADMIN') {
+          isAdmin = true;
+        }
+      });
     }
 
     return {
       user,
+      authStore,
+      isAdmin,
       logout() {
         authStore.logout();
         router.push({ name: 'home' })
