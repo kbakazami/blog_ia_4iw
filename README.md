@@ -17,8 +17,8 @@ Actuellement les internaute peuvent consulter les articles postés sur le site. 
 ### Fonctionnalités : 
 - Les appels à l’API se font en HTTP sur un serveur Node.js (Express).
 Quelque exemple des endpoint :
-* http://localhost:8000/api/auth/signin
-* http://localhost:8000/api/auth/signup
+    * http://localhost:8000/api/auth/signin
+    * http://localhost:8000/api/auth/signup
 ...
 
 - La route /admin est "protégée", on peut y accéder que si on est admin (le user est stocké dans le localstorage pour pouvoir accéder à ses données genre le rôle) et pour le reste ça renvoie un code 404.
