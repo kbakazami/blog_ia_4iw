@@ -1,4 +1,3 @@
-
 <template>
   <q-layout view="hhh LpR fFf">
 
@@ -13,9 +12,9 @@
       </q-toolbar>
     </q-header>
     <q-drawer v-model="leftDrawerOpen" side="left" bordered>
-      <q-btn class="q-mt-lg" flat to="/articles">See all articles</q-btn>
-      <q-btn flat to="/generate">Generate an article</q-btn>
-
+      <q-btn @click="this.$route.go()" class="q-mt-lg" flat to="/articles">See all articles</q-btn>
+      <q-btn @click="this.$route.go()" flat to="/generate">Generate an article</q-btn>
+      <q-btn @click="this.$route.go()" class="q-mt-lg" flat to="/users">See all users</q-btn>
     </q-drawer>
 
     <q-page-container>
@@ -32,7 +31,7 @@ import { ref } from 'vue';
 export default {
   name: "AdminLayout",
   setup() {
-    const leftDrawerOpen = ref(false);
+    const leftDrawerOpen = ref(true);
     return {
       leftDrawerOpen,
       toggleLeftDrawer () {

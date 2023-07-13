@@ -55,7 +55,7 @@
           </q-td>
           <q-td key="actions" :props="props" class="table-wrapper-td">
             <span class="table-label-mobile">Actions</span>
-            <router-link :to="{name: 'edit', params: {id: props.row.id}}">
+            <router-link :to="{name: 'editArticle', params: {id: props.row.id}}">
               <q-btn  icon="edit" class="col-2"/>
             </router-link>
 

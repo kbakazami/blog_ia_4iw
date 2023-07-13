@@ -10,7 +10,7 @@ export const useUserStore = defineStore("users", {
         lastname: "Aifos",
         email: 'sofia@mail.fr',
         password: 'secret!',
-        role: ['Admin','User']
+        role: 'Admin',
       },
       {
         id:2,

@@ -1,37 +1,78 @@
+import {useAuthStore} from "src/stores/auth";
+
 const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("src/pages/HomePage.vue") },
+      {
+        path: "",
+        name: "home",
+        component: () => import("src/pages/HomePage.vue")
+      },
+      {
+        path: "/login",
+        name: "login",
+        component: () => import("pages/Form.vue")
+      },
+      {
+        path: "/register",
+        name: "register",
+        component: () => import("pages/Form.vue")
+      },
     ],
   },
   {
     path: '/admin',
     name:'admin',
+    meta: { requiresAdmin: true },
     component: () => import("layouts/Admin/AdminLayout.vue"),
-   children: [
-     {
-       path: "",
-       name: "base",
-       component: () => import("pages/Admin/Admin.vue")
-     },
-     {
-       path: "/articles",
-       name: 'articles',
-       component:() => import("pages/Admin/ArticlesList.vue")
-     },
-     {
-       path: "/generate",
-       name: "generate",
-       component:() => import("pages/Admin/ArticlesForm.vue")
-     },
-     {
-       path: "article/:id",
-       name: "edit",
-       component: () => import("pages/Admin/ArticlesForm.vue"),
-     },
-   ]
+    beforeEnter: (to, from, next) => {
+      const authStore = useAuthStore();
+      const publicPages = ['/login'];
+      const authRequired = !publicPages.includes(to.path);
+
+      if(authRequired && !authStore.user) {
+        next('/login');
+      }else if(authRequired && authStore.user && authStore.user.role !== 'Admin')
+      {
+        next('/');
+      }else {
+        next();
+      }
+    },
+    children: [
+      {
+        path: "",
+        name: "base",
+        component: () => import("pages/Admin/Admin.vue"),
+      },
+      {
+        path: "/articles",
+        name: 'articles',
+        component:() => import("pages/Admin/List.vue")
+      },
+      {
+        path: "/generate",
+        name: "generate",
+        component:() => import("pages/Admin/Form.vue")
+      },
+      {
+        path: "/article/:id",
+        name: "editArticle",
+        component: () => import("pages/Admin/Form.vue")
+      },
+      {
+        path: "/users",
+        name: 'users',
+        component:() => import("pages/Admin/List.vue")
+      },
+      {
+        path: "/user/:id",
+        name: "editUser",
+        component: () => import("pages/Admin/Form.vue")
+      },
+    ]
   },
 
   // Always leave this as last one,
