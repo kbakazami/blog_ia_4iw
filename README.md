@@ -138,7 +138,7 @@ npm run dev
 La partie front du projet se trouve dans le dossier "front". C'est dans ce dossier qu'on trouve les fichier vuejs.
 * Les entités (user/auth/articles) + les requêtes à l'api sont dans des stores pinia
 * Les forms ont vocation à être réutilisés. Ils sont donc dans /components
-* Les vues sont "fragmentées" : les vues de l'admin sont dans genre pages/Admin/fichier.vue et le front dans pages/fichier.vue (paril pour les components)
+* Les vues sont "fragmentées" : les vues de l'admin sont dans pages/Admin/fichier.vue et le front dans pages/fichier.vue (paril pour les components)
 
 La partie back se trouve dans le dossier "api". C'est là qu'on trouve les routes API
 * /config : swager, api, dbb
@@ -154,7 +154,7 @@ Effectuer des tests de régression : Avant de mettre en place une solution poten
 
 
 ## Proposition mise en place d’un outil BI 
-La "balise Google Analytics" est une bibliothèque JavaScript permettant de mesurer la manière dont les utilisateurs interagissent avec notre site Web. La balise Google Analytics doit être ajoutée en haut de la balise <head> et avant toute autre balise de script ou CSS.
+La "balise Google Analytics" est une bibliothèque JavaScript permettant de mesurer la manière dont les utilisateurs interagissent avec notre site Web. La balise Google Analytics doit être ajoutée en haut de la balise ```html<head>``` et avant toute autre balise de script ou CSS.
 
 Modèle de balise Google Analytics :
 ```js
@@ -177,18 +177,17 @@ Les données collectées par la balise Google :
 * Navigateur et système d'exploitation utilisés
 * Site référent
 
-🔎 Ces données seront très importantes pour évaluer et comprendre l'expérience des différents utilisateurs sur l'application afin de déterminer quelles fonctionnalités sont particulièrement appréciés par les internautes et lequelles devront être ajouté et priorisé dans les futures taches.
+🔎 Ces données seront très importantes pour évaluer et comprendre l'expérience des différents utilisateurs sur l'application afin de déterminer quelles fonctionnalités sont particulièrement appréciés par les internautes et lequelles devront être ajouté en priorité dans les futures taches.
 
 
 ## Propositions d’évolution de l’architecture
-* Actuellement les administrateurs seul peuvent ajouter, éditer ou supprimer des articles. C'est-à-dire que les internautes ne peuvent que consulter les articles.
-Dans une nouvelle version de l'application les internautes pourront poster des commentaires pour chaque articles. 
+* Actuellement seul les administrateurs peuvent ajouter, éditer ou supprimer des articles. C'est-à-dire que les utilisateurs ne peuvent que consulter les articles. Dans une nouvelle version de l'application les internautes pourront poster des commentaires pour chaque articles.
 
 * Dans une future évolution de l'application, il sera possible d'ajouter un système de catégories pour les différents articles. Une nouvelle table "category" pourra être ajouté à la BDD. Ainsi les articles pourront être organisés par catégorie. 
 
-* Faire l'update de l'utilisateur : modifier ses informations et aussi permettre d'ajouter' le rôle admin par exemple.
+* Faire l'update de l'utilisateur : modifier ses informations et aussi permettre d'ajouter le rôle admin par exemple.
 
-* I18n est un plugin d'internationalisation pour Vue.js. Il permet de gérer les taductions de l'application. Il s'agit d'ouvrir le projet à un public plus large dans dans une nouvelle version de l'application. L'installation est très simple :
+* I18n est un plugin d'internationalisation pour Vue.js. Il permet de gérer les taductions de l'application. Il s'agit d'ouvrir le projet à un public plus large dans une nouvelle version de l'application. L'installation est très simple :
 ```bash
 npm install vue-i18n@9
 # ou
