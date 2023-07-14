@@ -115,6 +115,18 @@ npm run dev
 
 ![Admin dashboard](https://cdn.discordapp.com/attachments/1127879001633984704/1129148277795860570/image.png)
 
+* Admin - Génération d'un article (au clic sur le bouton "generate" un contenu va être proposé (malheureusement comme il faut un abonnement pour utiliser l'API de OpenAi, nous n'avons pas pu générer du vrai contenu donc c'est du Lorem à la place mais la connexion a bien été mise en place)
+
+![Admin generate](https://cdn.discordapp.com/attachments/954684796305539122/1129332314846007477/image.png)
+
+* Admin - Éditer un article :
+
+![Admin edit](https://cdn.discordapp.com/attachments/954684796305539122/1129332577619157012/image.png)
+
+* Admin - Liste des utilisateurs :
+
+![Admin list user](https://cdn.discordapp.com/attachments/954684796305539122/1129332927201816597/image.png)
+
 * Front - Si on est admin
 
 ![Admin front](https://cdn.discordapp.com/attachments/1127879001633984704/1129148680990109746/image.png)
@@ -122,6 +134,11 @@ npm run dev
 * Front - Si on est user et/ou pas connecté
 
 ![User front](https://cdn.discordapp.com/attachments/1127879001633984704/1129153553722773614/image.png)
+
+* Responsive - Le site est également responsive que ce soit la partie admin ou utilisateur (deux exemples)
+
+![Responsive user view](https://cdn.discordapp.com/attachments/954684796305539122/1129333848904310844/image.png)
+![Responsive admin view article](https://cdn.discordapp.com/attachments/954684796305539122/1129333695229218876/image.png)
 
 ## Fabriqué avec 🛒
 
