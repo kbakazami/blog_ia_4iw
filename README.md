@@ -22,18 +22,20 @@ Quelque exemple des endpoint :
     * http://localhost:8000/api/auth/signup
 ...
 
-- La route /admin est "protégée", on peut y accéder que si on est admin (le user est stocké dans le localstorage pour pouvoir accéder à ses données genre le rôle) et pour le reste ça renvoie un code 404.
+- La route /admin est "protégée", on peut y accéder que si l'on est admin (le user est stocké dans le localstorage pour pouvoir accéder à ses données par exemple le rôle pour vérifier ses permissions) et pour le reste des pages ça renvoie un code 404.
 
 - Modèle d'export d'un article en json :
 ```json
-{
-    "id": 1,
-    "title": "This framework is amazing",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ligula nisi, convallis sed justo eget, hendrerit sodales dui. Praesent odio orci, sagittis at purus in, volutpat semper metus. Duis mauris urna, cursus at metus eu, maximus placerat enim.",
-    "author": "John Doe",
-    "createdAt": "10/07/2023",
-    "isPublished": true
-}
+ "articles": [
+  {
+   "_id": "64b0252646036610f2ad15f5",
+   "title": "About the dev community",
+   "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sagittis facilisis cursus. Donec nec sagittis odio. Cras dapibus diam ac malesuada sagittis. Donec pulvinar massa lectus, vel varius urna efficitur non. Vestibulum sollicitudin sapien nec risus mattis, vel molestie neque varius. In hendrerit et lacus sagittis sagittis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis tristique quis dolor non convallis. Aenean quis tempus felis.\n\nVestibulum tempor quam commodo neque venenatis, a scelerisque ante tempor. Nulla facilisi. Sed in placerat mi. Praesent mollis a est eu consectetur. Proin et elit fermentum, luctus lorem vitae, faucibus velit. Donec rhoncus est at est posuere, congue commodo elit varius. Phasellus gravida, nunc vitae gravida feugiat, dolor diam aliquet odio, id ullamcorper lectus nisi at leo. Donec laoreet massa sit amet diam tincidunt, at gravida magna laoreet.",
+   "author": "sofia",
+   "isPublished": true,
+   "__v": 0
+  },
+]
 ```
 
 
@@ -87,7 +89,13 @@ cd api
 ```bash
 npm i
 ```
-
+    
+9. Ajouter un fichier .env dans le dossier "api" avec les constantes suivantes :
+```env
+PORT=
+URI_DB=
+JWT_SECRET=
+```
 
 ## Démarrage
 
@@ -96,7 +104,9 @@ npm i
 quasar dev
 ```
 
-2. Lancer le serveur node
+2. Lancer docker pour que la connexion avec mongodb soit effective
+   
+3. Lancer le serveur node
 ```bash
 npm run dev
 ```
@@ -138,7 +148,7 @@ npm run dev
 La partie front du projet se trouve dans le dossier "front". C'est dans ce dossier qu'on trouve les fichier vuejs.
 * Les entités (user/auth/articles) + les requêtes à l'api sont dans des stores pinia
 * Les forms ont vocation à être réutilisés. Ils sont donc dans /components
-* Les vues sont "fragmentées" : les vues de l'admin sont dans pages/Admin/fichier.vue et le front dans pages/fichier.vue (paril pour les components)
+* Les vues sont "fragmentées" : les vues de l'admin sont dans pages/Admin/fichier.vue et le front dans pages/fichier.vue. Les components sont placés de la même manière.
 
 La partie back se trouve dans le dossier "api". C'est là qu'on trouve les routes API
 * /config : swager, api, dbb
@@ -187,13 +197,13 @@ Les données collectées par la balise Google :
 
 * Faire l'update de l'utilisateur : modifier ses informations et aussi permettre d'ajouter le rôle admin par exemple.
 
-* I18n est un plugin d'internationalisation pour Vue.js. Il permet de gérer les taductions de l'application. Il s'agit d'ouvrir le projet à un public plus large dans une nouvelle version de l'application. L'installation est très simple :
+* I18n est un plugin d'internationalisation pour Vue.js intégré par Quasar directement lorsque l'on créé un nouveau projet sous Quasar (si on choisit l'option). Il permet de gérer les taductions de l'application. Il s'agit d'ouvrir le projet à un public plus large dans une nouvelle version de l'application. L'installation est très simple si on ne l'a pas pris lors de la création :
 ```bash
 npm install vue-i18n@9
 # ou
 yarn add vue-i18n@9 
 ```
-
+Il est actuellement disponible sur le projet.
 
 ## Auteurs 🎭
 
